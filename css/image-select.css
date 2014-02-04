@@ -1,0 +1,14 @@
+ul.acf-image-select-list li {
+	display: inline-block;
+	margin: 5px;
+	text-align: center;
+}
+ul.acf-image-select-list li input {
+	display: none;
+}
+.acf-image-select-list .acf-image-select img{
+	border: solid 4px #D9D9D9;
+}
+.acf-image-select-list .acf-image-select .acf-image-select-selected img{
+	border: solid 4px #7A7A7A;
+}
