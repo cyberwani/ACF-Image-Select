@@ -22,6 +22,7 @@ class acf_field_image_select extends acf_field
 			'default_value'		=>	'',
 			'multiple'          => 0,
 			'image_path'		=>	get_template_directory_uri() . '/images/',
+			'image_extension'   => 'png',
 		);
 		
 		// settings
@@ -90,7 +91,7 @@ class acf_field_image_select extends acf_field
 					
 					$e .= '<label for="' . $field_id . '" class="'.$class.'">';
 						$e .= '<input id="' . $field_id . '" class="item-input" type="radio" name="' . esc_attr($field['name']) . '" value="' . esc_attr($key) . '" ' .  $atts  . ' />';
-						$e .= '<img class="item-image ' . $field_id . '-image" alt="'.$value.'" src="'.$field['image_path'].esc_attr($key).'.png">';
+						$e .= '<img class="item-image ' . $field_id . '-image" alt="'.$value.'" src="'.$field['image_path'].esc_attr($key).'.'.$field['image_extension'].'">';
 						$e .= '<br/>';
 						$e .= '<span class="item-title ' . $field_id . '-title">'.$value.'</span>';
 					$e .= '</label>';
@@ -205,6 +206,33 @@ class acf_field_image_select extends acf_field
 					'type'	=>	'text',
 					'name'	=>	'fields['.$key.'][image_path]',
 					'value'	=>	$field['image_path'],
+				));
+				
+				?>
+				<div class="image-select-option-description">
+					<p class="description">
+						<?php _e("<span style='color:#BC0B0B'>Some Important Paths:</span>'",'acf'); ?>
+						<ul>
+							<li><strong>Theme URL:</strong> <?php echo get_template_directory_uri();?> (<em><u>If current theme is child theme.</u></em>)</li>
+							<li><strong>Current/Child Theme:</strong> <?php echo get_stylesheet_directory_uri();?></li>
+							<li><strong>Content Folder:</strong> <?php echo content_url();?></li>
+							<li><strong>Home URL:</strong> <?php echo home_url();?></li>
+						</ul>
+					</p>
+				</div>
+			</td>
+		</tr>
+		<tr class="field_option field_option_<?php echo $this->name; ?>">
+			<td class="label">
+				<label><?php _e("Image Extension",'acf'); ?></label>
+			</td>
+			<td>
+				<?php
+				
+				do_action('acf/create_field', array(
+					'type'	=>	'text',
+					'name'	=>	'fields['.$key.'][image_extension]',
+					'value'	=>	$field['image_extension'],
 				));
 				
 				?>

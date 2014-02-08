@@ -3,7 +3,7 @@
 Plugin Name: Advanced Custom Fields: Image Select
 Plugin URI: http://www.about/me/cyberwani
 Description: Image Select addon for Advanced Custom Fields.
-Version: 1.0.0
+Version: 1.0.1
 Author: Dinesh Kesarwani
 Author URI: http://www.about/me/cyberwani
 License: GPLv2 or later
