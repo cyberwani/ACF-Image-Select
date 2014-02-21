@@ -1,7 +1,7 @@
 jQuery(document).ready(function() {
 
 	// On label click, change the input and class
-	jQuery('.acf-image-select label img, .acf-image-select label .acf-image-select-title').click(function(e) {
+	jQuery(document).on('click', '.acf-image-select label img, .acf-image-select label .acf-image-select-title', function(e) {
 		var id         = jQuery(this).closest('label').attr('for');
 		var parentList = jQuery(this).closest('ul.acf-image-select-list');
 		
@@ -12,4 +12,3 @@ jQuery(document).ready(function() {
 	});
 	
 });
-
