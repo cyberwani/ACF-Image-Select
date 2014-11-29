@@ -12,6 +12,7 @@ The 'Image Select' field allows you to add images as radio button.
 
 This add-on will work with:
 
+* version 5 and up
 * version 4 and up
 * version 3 and bellow
 
