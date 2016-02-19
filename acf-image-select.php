@@ -29,11 +29,13 @@ class acf_field_image_select_plugin
 		$mofile = trailingslashit(dirname(__File__)) . 'lang/' . $domain . '-' . get_locale() . '.mo';
 		load_textdomain( $domain, $mofile );
 		*/
+	
 
+		// version 5+
+		add_action('acf/include_fields', array($this, 'register_fields_v5'));
 
 		// version 4+
 		add_action('acf/register_fields', array($this, 'register_fields'));
-
 
 		// version 3-
 		add_action('init', array( $this, 'init' ), 5);
@@ -52,7 +54,7 @@ class acf_field_image_select_plugin
 	{
 		if(function_exists('register_field'))
 		{
-			register_field('acf_field_image_select', dirname(__File__) . '/image-select-v3.php');
+			register_field('acf_field_image_select', plugin_dir_path(__FILE__) . '/image-select-v3.php');
 		}
 	}
 
@@ -68,6 +70,21 @@ class acf_field_image_select_plugin
 	{
 		include_once('image-select-v4.php');
 	}
+
+
+	/*
+	*  register_fields
+	*
+	*  @description:
+	*  @since: 3.6
+	*  @created: 04/02/2014
+	*/
+
+	function register_fields_v5()
+	{
+		include_once('image-select-v5.php');
+	}
+
 
 }
 
