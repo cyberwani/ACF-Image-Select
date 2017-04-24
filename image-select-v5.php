@@ -77,10 +77,13 @@ class acf_field_image_select extends acf_field
 				}
 				else
 				{
-					if( strval($key) === strval($field['value']) )
+					if( ! is_array($field['value']) )
 					{
-						$atts = 'checked="checked" data-checked="checked"';
-						$class = 'acf-image-select-selected';
+						if( strval($key) === strval($field['value']) )
+						{
+							$atts = 'checked="checked" data-checked="checked"';
+							$class = 'acf-image-select-selected';
+						}
 					}
 				}
 				
