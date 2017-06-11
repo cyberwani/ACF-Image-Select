@@ -1,0 +1,13 @@
+{
+    "name": "cyberwani/acf-image-select",
+    "description": "Image Select addon for Advanced Custom Fields.",
+    "type": "wordpress-plugin",
+    "license": "GPL-2.0",
+    "authors": [
+        {
+            "name": "cyberwani",
+            "email": ""
+        }
+    ],
+    "require": {}
+}
