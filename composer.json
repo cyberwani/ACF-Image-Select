@@ -1,0 +1,13 @@
+{
+    "name": "moderntribe/acf-image-select",
+    "description": "Fork of ACF Image Select Field",
+    "authors": [
+        {
+            "name": "Modern Tribe",
+            "email": "admin@tri.be"
+        }
+    ],
+    "require": {},
+    "version": "1.0.1",
+    "type": "wordpress-plugin"
+}

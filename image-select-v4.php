@@ -10,7 +10,7 @@ class acf_field_image_select extends acf_field
 	*  @since	3.6
 	*  @date	23/01/13
 	*/
-	
+
 	function __construct()
 	{
 		// vars
@@ -21,23 +21,24 @@ class acf_field_image_select extends acf_field
 			'choices'			=>	array(),
 			'default_value'		=>	'',
 			'multiple'          => 0,
-			'image_path'		=>	get_template_directory_uri() . '/images/',
+			'image_path'		=>	apply_filters('acf/image-select/default_path', get_template_directory_uri() . '/images/'),
 			'image_extension'   => 'png',
+			'return_value'      => 'value'
 		);
-		
+
 		// settings
 		$this->settings = array(
 			'path'				=> apply_filters('acf/helpers/get_path', __FILE__),
 			'dir'				=> apply_filters('acf/helpers/get_dir', __FILE__),
 			'version'=> '1.0.0'
 		);
-		
+
 		// do not delete!
-    	parent::__construct();
-  
+		parent::__construct();
+
 	}
-	
-		
+
+
 	/*
 	*  create_field()
 	*
@@ -49,13 +50,13 @@ class acf_field_image_select extends acf_field
 	*  @since	3.6
 	*  @date	23/01/13
 	*/
-	
+
 	function render_field( $field )
 	{
 		// vars
 		$i = 0;
 		$e = '<ul class="acf-image-select-list ' . esc_attr($field['class']) . '" data-image-select-multiple="'.$field['multiple'].'">';
-		
+
 		// add choices
 		if( is_array($field['choices']) )
 		{
@@ -65,8 +66,8 @@ class acf_field_image_select extends acf_field
 				$i++;
 				$atts  = '';
 				$class = '';
-				
-				
+
+
 				// if there is no value and this is the first of the choices, select this on by default
 				if( $field['value'] === false )
 				{
@@ -84,28 +85,28 @@ class acf_field_image_select extends acf_field
 						$class = 'acf-image-select-selected';
 					}
 				}
-				
+
 				// HTML
 				$field_id = esc_attr($field['id']) . '-' . esc_attr($key);
 				$e .= '<li class="acf-image-select">';
-					
-					$e .= '<label for="' . $field_id . '" class="'.$class.'">';
-						$e .= '<input id="' . $field_id . '" class="item-input" type="radio" name="' . esc_attr($field['name']) . '" value="' . esc_attr($key) . '" ' .  $atts  . ' />';
-						$e .= '<img class="item-image ' . $field_id . '-image" alt="'.$value.'" src="'.$field['image_path'].esc_attr($key).'.'.$field['image_extension'].'">';
-						$e .= '<br/>';
-						$e .= '<span class="item-title ' . $field_id . '-title">'.$value.'</span>';
-					$e .= '</label>';
+
+				$e .= '<label for="' . $field_id . '" class="'.$class.'">';
+				$e .= '<input id="' . $field_id . '" class="item-input" type="radio" name="' . esc_attr($field['name']) . '" value="' . esc_attr($key) . '" ' .  $atts  . ' />';
+				$e .= '<img class="item-image ' . $field_id . '-image" alt="'.$value.'" src="'.$field['image_path'].esc_attr($key).'.'.$field['image_extension'].'">';
+				$e .= '<br/>';
+				$e .= '<span class="item-title ' . $field_id . '-title">'.$value.'</span>';
+				$e .= '</label>';
 				$e .= '</li>';
 			}
 		}
-		
+
 		$e .= '</ul>';
-		
+
 		echo $e;
-		
+
 	}
-	
-	
+
+
 	/*
 	*  create_options()
 	*
@@ -118,15 +119,15 @@ class acf_field_image_select extends acf_field
 	*
 	*  @param	$field	- an array holding all the field's data
 	*/
-	
+
 	function create_options( $field )
 	{
 		// vars
 		$key = $field['name'];
-		
+
 		// implode checkboxes so they work in a textarea
 		if( is_array($field['choices']) )
-		{		
+		{
 			foreach( $field['choices'] as $k => $v )
 			{
 				$field['choices'][ $k ] = $k . ' : ' . $v;
@@ -138,19 +139,19 @@ class acf_field_image_select extends acf_field
 			<td class="label">
 				<label for=""><?php _e("Choices",'acf'); ?></label>
 				<p class="description"><?php _e("Enter your choices one per line",'acf'); ?><br>
-				<?php _e("Red",'acf'); ?><br /><?php _e("Blue",'acf'); ?><br>
-				<?php _e("red : Red",'acf'); ?><br /><?php _e("blue : Blue",'acf'); ?></p>
+					<?php _e("Red",'acf'); ?><br /><?php _e("Blue",'acf'); ?><br>
+					<?php _e("red : Red",'acf'); ?><br /><?php _e("blue : Blue",'acf'); ?></p>
 			</td>
 			<td>
 				<?php
-				
+
 				do_action('acf/create_field', array(
 					'type'	=>	'textarea',
 					'class' => 	'textarea field_option-choices',
 					'name'	=>	'fields['.$key.'][choices]',
 					'value'	=>	$field['choices'],
 				));
-				
+
 				?>
 				<div class="image-select-option-description">
 					<p class="description">
@@ -165,13 +166,13 @@ class acf_field_image_select extends acf_field
 			</td>
 			<td>
 				<?php
-				
+
 				do_action('acf/create_field', array(
 					'type'	=>	'text',
 					'name'	=>	'fields['.$key.'][default_value]',
 					'value'	=>	$field['default_value'],
 				));
-				
+
 				?>
 			</td>
 		</tr>
@@ -201,23 +202,23 @@ class acf_field_image_select extends acf_field
 			</td>
 			<td>
 				<?php
-				
+
 				do_action('acf/create_field', array(
 					'type'	=>	'text',
 					'name'	=>	'fields['.$key.'][image_path]',
 					'value'	=>	$field['image_path'],
 				));
-				
+
 				?>
 				<div class="image-select-option-description">
 					<p class="description">
 						<?php _e("<span style='color:#BC0B0B'>Some Important Paths:</span>'",'acf'); ?>
-						<ul>
-							<li><strong>Theme URL:</strong> <?php echo get_template_directory_uri();?> (<em><u>If current theme is child theme.</u></em>)</li>
-							<li><strong>Current/Child Theme:</strong> <?php echo get_stylesheet_directory_uri();?></li>
-							<li><strong>Content Folder:</strong> <?php echo content_url();?></li>
-							<li><strong>Home URL:</strong> <?php echo home_url();?></li>
-						</ul>
+					<ul>
+						<li><strong>Theme URL:</strong> <?php echo get_template_directory_uri();?> (<em><u>If current theme is child theme.</u></em>)</li>
+						<li><strong>Current/Child Theme:</strong> <?php echo get_stylesheet_directory_uri();?></li>
+						<li><strong>Content Folder:</strong> <?php echo content_url();?></li>
+						<li><strong>Home URL:</strong> <?php echo home_url();?></li>
+					</ul>
 					</p>
 				</div>
 			</td>
@@ -228,18 +229,18 @@ class acf_field_image_select extends acf_field
 			</td>
 			<td>
 				<?php
-				
+
 				do_action('acf/create_field', array(
 					'type'	=>	'text',
 					'name'	=>	'fields['.$key.'][image_extension]',
 					'value'	=>	$field['image_extension'],
 				));
-				
+
 				?>
 			</td>
 		</tr>
 		<?php
-		
+
 	}
 
 
@@ -262,15 +263,15 @@ class acf_field_image_select extends acf_field
 		wp_enqueue_script(array(
 			'acf-input-image-select',
 		));
-		
+
 		// styles
 		wp_register_style('acf-input-image-select', plugin_dir_path(__FILE__) . '/css/image-select.css', array('acf-input'), $this->settings['version']);
 		wp_enqueue_style(array(
 			'acf-input-image-select',
 		));
 	}
-	
-	
+
+
 	/*
 	*  update_value()
 	*
@@ -286,26 +287,26 @@ class acf_field_image_select extends acf_field
 	*
 	*  @return	$value - the modified value
 	*/
-	
+
 	function update_field( $field, $post_id )
 	{
-		
+
 		// check if is array. Normal back end edit posts a textarea, but a user might use update_field from the front end
 		if( is_array( $field['choices'] ))
 		{
-		    return $field;
+			return $field;
 		}
-		
+
 		// vars
 		$new_choices = array();
-		
-		
+
+
 		// explode choices from each line
 		if( $field['choices'] )
 		{
 			// stripslashes ("")
 			$field['choices'] = stripslashes_deep($field['choices']);
-		
+
 			if(strpos($field['choices'], "\n") !== false)
 			{
 				// found multiple lines, explode it
@@ -316,8 +317,8 @@ class acf_field_image_select extends acf_field
 				// no multiple lines! 
 				$field['choices'] = array($field['choices']);
 			}
-			
-			
+
+
 			// key => value
 			foreach($field['choices'] as $choice)
 			{
@@ -332,15 +333,15 @@ class acf_field_image_select extends acf_field
 				}
 			}
 		}
-		
-		
+
+
 		// update choices
 		$field['choices'] = $new_choices;
-		
-		
+
+
 		return $field;
 	}
-	
+
 }
 
 new acf_field_image_select();
