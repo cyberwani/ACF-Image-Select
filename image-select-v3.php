@@ -38,7 +38,7 @@ class acf_field_{{field_name}} extends acf_Field
 		$this->settings = array(
 			'path' => $this->helpers_get_path(__FILE__),
 			'dir' => $this->helpers_get_dir(__FILE__),
-			'version' => '1.0.0'
+			'version' => '1.0.2'
 		);
 
   }

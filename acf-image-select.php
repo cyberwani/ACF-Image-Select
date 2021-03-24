@@ -1,11 +1,11 @@
 <?php
 /*
 Plugin Name: Advanced Custom Fields: Image Select
-Plugin URI: http://www.about/me/cyberwani
-Description: Image Select addon for Advanced Custom Fields.
-Version: 1.0.1
-Author: Dinesh Kesarwani
-Author URI: http://www.about/me/cyberwani
+Plugin URI: https://github.com/moderntribe/ACF-Image-Select/
+Description: Image Select addon for Advanced Custom Fields. (Forked from http://www.about/me/cyberwani.)
+Version: 1.0.2
+Author: Modern Tribe
+Author URI: http://tri.be
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 */

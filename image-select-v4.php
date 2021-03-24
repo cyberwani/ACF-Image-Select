@@ -30,7 +30,7 @@ class acf_field_image_select extends acf_field
 		$this->settings = array(
 			'path'				=> apply_filters('acf/helpers/get_path', __FILE__),
 			'dir'				=> apply_filters('acf/helpers/get_dir', __FILE__),
-			'version'=> '1.0.0'
+			'version'=> '1.0.2'
 		);
 
 		// do not delete!
