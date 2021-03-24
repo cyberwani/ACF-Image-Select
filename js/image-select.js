@@ -1,6 +1,4 @@
 (function($){
-
-
 	/**
 	 *  initialize_field
 	 *
@@ -20,10 +18,19 @@
 			var id         = jQuery(this).closest('label').attr('for');
 			var parentList = jQuery(this).closest('ul.acf-image-select-list');
 
-			parentList.find('.acf-image-select-selected').removeClass('acf-image-select-selected').find("input[type='radio']").attr("checked",false).removeAttr("data-checked");
+			parentList
+				.find('.acf-image-select-selected')
+				.removeClass('acf-image-select-selected')
+				.find("input[type='radio']")
+				.attr("checked",false)
+				.removeAttr("data-checked");
 
-			jQuery('label[for="' + id + '"]').addClass('acf-image-select-selected').find("input[type='radio']").attr("checked",true).attr("data-checked","checked");
-
+			jQuery('label[for="' + id + '"]')
+				.addClass('acf-image-select-selected')
+				.find("input[type='radio']")
+				.attr("checked",true)
+				.attr("data-checked","checked")
+				.trigger('change');
 		});
 
 	}
@@ -50,8 +57,5 @@
 
 		});
 	}
-
-
-
 
 })(jQuery);
